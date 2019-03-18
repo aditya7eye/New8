@@ -53,6 +53,7 @@ Route::group([
     Route::get('deletepage','PageController@deletepage');
     Route::get('editpage/{id}','PageController@editpage');
     Route::get('pageupdate','PageController@pageupdate');
+    ////
 
     //////////////////////Heders
 
