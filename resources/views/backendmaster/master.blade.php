@@ -349,6 +349,7 @@
   <!-- Custom scripts for all pages-->
   <script src="{{ url('js/sb-admin-2.min.js') }}"></script>
 
+  <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 
 </body>
 </html>

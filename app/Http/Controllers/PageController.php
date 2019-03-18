@@ -11,7 +11,7 @@ class PageController extends Controller
 
     function alldynamicpages()
     {
-   return view('pagecreate.allpage');
+        return view('pagecreate.allpage');
     }
 
     function pagecreate()
@@ -21,7 +21,8 @@ class PageController extends Controller
 
     function createpagebody()
     {
-        // return $_REQUEST;
+
+//         return $_REQUEST;
         $data = request('myimage');
         list($type, $data) = explode(';', $data);
         list(, $data) = explode(',', $data);
@@ -53,7 +54,7 @@ class PageController extends Controller
 
     public function pagemenu()
     {
-       $data = DynamicpageModel::wherestatus(1)->get();
+        $data = DynamicpageModel::wherestatus(1)->get();
         return view('pagemenu.pagemenu')->with(['data' => $data]);
     }
 
@@ -89,6 +90,7 @@ class PageController extends Controller
         $data->save();
         return 'done';
     }
+
     function deactivatepage()
     {
         $id = request('did');
@@ -97,6 +99,7 @@ class PageController extends Controller
         $data->save();
         return 'done';
     }
+
     function deletepage()
     {
         $id = request('did');
