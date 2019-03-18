@@ -51,8 +51,9 @@ Route::group([
     Route::get('activatepage','PageController@activatepage');
     Route::get('deactivatepage','PageController@deactivatepage');
     Route::get('deletepage','PageController@deletepage');
-    Route::get('editpage/{id}','PageController@editpage');
+    Route::get('edit-menu/{id}','PageController@editmenu');
     Route::get('pageupdate','PageController@pageupdate');
+    Route::get('pagedd','PageController@pagedd');
 
     //////////////////////Heders
 
@@ -64,5 +65,7 @@ Route::group([
   Route::get('all-dynamic-pages','PageController@alldynamicpages');
   Route::get('page-create','PageController@pagecreate');
   Route::post('create-page-body','PageController@createpagebody');
+  Route::get('page-edit/{id}','PageController@pageedit');
+  
 
 });

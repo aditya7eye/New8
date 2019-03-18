@@ -17,7 +17,7 @@
 </style>
 <div class="container">
 
-    <h4>Page Menu</h4>
+    <h4> Create Menu</h4>
     <hr>
     <div class="mycard">
         <form action="{{ url('admin/addpage') }}" method="get" enctype="multipart/form-data">
@@ -25,8 +25,8 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label for="">Page Name</label>
-                        <input type="text" name="name" placeholder="Enter Name" class="form-control" required>
+                        <label for="">Menu Name</label>
+                        <input type="text" name="name" placeholder="Enter Menu Name" class="form-control" required>
                         {{-- <select name="name" id="name" class="form-control" required>
                             <option value="">select</option>
                            @foreach ($data as $item)
@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <label for="">Type</label>
                         <select name="type" id="type" onchange="changestatus();" class="form-control" required>
-                    <option value="">select</option>
+                    <option value="">Select</option>
                     <option value="0">Internal</option>
                     <option value="1">External</option>
                 </select>
@@ -48,7 +48,9 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label for="">link</label>
+                        <div id="hereis">
                         <input type="text" name="link" id="link" placeholder="Enter Link" class="form-control" disabled>
+                      </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -89,7 +91,7 @@
                     @if ($item->id > 4)
                   
                           <td scope="row"><div class="btn-group" role="group" aria-label="Basic example">
-                              <a href="{{ url('admin/editpage').'/'.base64_encode($item->id) }}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a>
+                              <a href="{{ url('admin/edit-menu').'/'.base64_encode($item->id) }}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a>
                               <button type="button" onclick="deletepage({{ $item->id }});" class="btn btn-danger btn-sm">delete</button>
                               @if($item->is_active == 1)
                               <button type="button" onclick="deactivatepage({{ $item->id }});" class="btn btn-success btn-sm">De-activate</button>
@@ -233,11 +235,18 @@ Swal.fire({
         var value = $('#type').val();
         if(value == 1)
         {
-$('#link').prop('disabled',false);
+          $.get('{{ url('admin/pagedd') }}', {value:value}, function (data) {
+                  //  alert(data);
+                   $('#hereis').html(data);
+                });
         }
         else if(value == 0)
         {
 $('#link').prop('disabled',true);
+$.get('{{ url('admin/pagedd') }}', {value:value}, function (data) {
+                  //  alert(data);
+                   $('#hereis').html(data);
+                });
         }
         
     }

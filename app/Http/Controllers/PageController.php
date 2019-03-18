@@ -11,7 +11,17 @@ class PageController extends Controller
 
     function alldynamicpages()
     {
-   return view('pagecreate.allpage');
+     return view('pagecreate.allpage');
+    }
+
+    function pageedit($id)
+    {
+        $id = base64_decode($id);
+        $data = DynamicpageModel::find($id);
+        return view('pagecreate.pageedit');
+        return $data;
+
+// return 'done';
     }
 
     function pagecreate()
@@ -59,13 +69,14 @@ class PageController extends Controller
 
     public function addpage()
     {
-        //    return str_slug($str);
-        $dynamic = \App\DynamicpageModel::find(request('name'));
+        // return $_REQUEST;
+        // //    return str_slug($str);
+        // $dynamic = \App\DynamicpageModel::find(request('name'));
         $data = new PagemenuModel();
-        $data->page_name = $dynamic->page_id;
+        $data->page_name = request('name');
         $data->type = request('type');
-        $data->page_id = request('name');
-        $data->link = request('link') == "" ? str_slug($dynamic->page_id) : request('link');
+        $data->page_id = request('type')== 0 ? request('link') : null;
+        $data->link = request('type')== 0 ? str_slug(request('name')) : request('link');
         $data->save();
         return back()->with('message', 'Page has been Added');
     }
@@ -106,11 +117,11 @@ class PageController extends Controller
         return 'done';
     }
 
-    function editpage($id)
+    function editmenu($id)
     {
         $id = base64_decode($id);
         $data = PagemenuModel::find($id);
-        return view('pagemenu.editpage')->with(['data' => $data]);
+        return view('pagemenu.editmenu')->with(['data' => $data]);
     }
 
     function pageupdate()
@@ -121,5 +132,9 @@ class PageController extends Controller
         $data->link = request('link') == "" ? str_slug(request('name')) : request('link');
         $data->save();
         return redirect('admin/page-menu')->with('message', 'Page has been Updated');
+    }
+    function pagedd()
+    {
+        return view('pagedd');
     }
 }

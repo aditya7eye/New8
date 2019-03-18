@@ -33,8 +33,8 @@ $page = \App\DynamicpageModel::get();
                 @foreach ($page as $index =>  $item)
                 <tr>
                         <td scope="row">{{ $index+1 }}</td>
-                        <td>{{ $item->page_id }}</td>
-                        <td><a href="{{ url('admin/page-create') }}"><button class="btn btn-success btn-sm">Edit</button></a></td>
+                        <td><b>{{ $item->title }}</b></td>
+                        <td><a href="{{ url('admin/page-edit').'/'.base64_encode($item->id)}}"><button class="btn btn-success btn-sm">Edit</button></a></td>
                     </tr>
                 @endforeach
           
