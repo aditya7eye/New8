@@ -20,7 +20,7 @@ route::get('contact-us','FrontEndController@contactus');
 ///dynamic page
 
 route::get('{link}/{id}/@','DynamicController@lending_page');
-
+///
 Route::group([
     'prefix' => 'admin'
 ], function() {
