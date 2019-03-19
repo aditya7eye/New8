@@ -1,6 +1,6 @@
-@extends('backendmaster.master') 
-@section('title','Alliance | Page Create') 
-@section('content') @php 
+@extends('backendmaster.master')
+@section('title','Alliance | Page Create')
+@section('content') @php
 $page = \App\DynamicpageModel::get();
 @endphp
 
@@ -16,10 +16,10 @@ $page = \App\DynamicpageModel::get();
 
     }
 </style>
- 
+
 <div class="container">
 
-    <h4>Page List</h4>
+    <h4>Page List <a class="btn btn-success pull-left" href="{{url('admin/page-create')}}">Page Create</a></h4>
     <div class="mycard">
     <table class="table table-striped">
         <thead class="thead-inverse">
@@ -42,7 +42,7 @@ $page = \App\DynamicpageModel::get();
             </tbody>
     </table>
     </div>
-    
+
 </div>
 
 @stop

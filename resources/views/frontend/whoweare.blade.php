@@ -1,414 +1,173 @@
 @extends('frontmaster.master')
 @section('title','Alliance | Who We Are')
 @section('content')
-@php
- 
-    $header = \App\HeaderModel::find(2);
-@endphp
-  <section class="innerabout">
+    @php
+        $success = \App\SuccessStory::where(['is_active'=>1])->get();
+        $success_years = \App\SuccessYears::where(['is_active'=>1])->orderBy('year','asc')->get();
+        $teams = \App\Team::where(['is_active'=>1])->get();
+        $header = \App\HeaderModel::find(2);
+    @endphp
+    <section class="innerabout">
 
-    <div class="container">
+        <div class="container">
 
-        <div class="row">
+            <div class="row">
 
-            <div class="col-lg-10 offset-lg-1">
+                <div class="col-lg-10 offset-lg-1">
 
-                <h1>{{ $header->heading }}</h1>
+                    <h1>{{ $header->heading }}</h1>
 
-                <p>{{ $header->description }}</p>
+                    <p>{{ $header->description }}</p>
 
-           </div><!--./col-lg-12--> 
+                </div><!--./col-lg-12-->
 
-       </div><!--./row-->
+            </div><!--./row-->
 
-    </div><!--./container-->  
+        </div><!--./container-->
 
-  </section><!-- #intro -->
+    </section><!-- #intro -->
 
 
 
-  
 
-  <section class="about_bg">
 
-    <div class="container">
+    <section class="about_bg">
 
-      <div class="row">
+        <div class="container">
 
-        <div class="col-lg-10 offset-lg-1 text-center spaceb30">
+            <div class="row">
 
-            <p>— SUCCESS STORIES —</p>
+                <div class="col-lg-10 offset-lg-1 text-center spaceb30">
 
-            <h2 class="service_title">A HISTORY OF  <span>SUCCESS</span></h2>
+                    <p>— SUCCESS STORIES —</p>
 
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat null.</p>
+                    @foreach($success as $succes)
+                        <h2 class="service_title">{{$succes->title}}</h2>
+                        {!! $succes->description !!}
+                    @endforeach
 
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat null.</p>
+                </div><!--./col-lg-10-->
 
-          </div><!--./col-lg-10-->
+            </div><!--./row-->
 
-      </div><!--./row-->
+        </div><!--./container-->
 
-    </div><!--./container-->  
+    </section>
 
-  </section>
 
 
+    <section class="bggray spacet80 spaceb80">
 
-  <section class="bggray spacet80 spaceb80">
+        <div class="container">
 
-    <div class="container">
+            <div class="row">
 
-      <div class="row">
+                <div class="owl-carousel timeline-carousel">
+                    @foreach($success_years as $year)
+                        <div class="col-lg-12">
 
-        <div class="owl-carousel timeline-carousel">
+                            <div class="timeline">
 
-        <div class="col-lg-12">
+                                <div class="year">{{$year->year}}</div>
 
-          <div class="timeline">
+                                <p class="time-title">{!! $year->title !!}</p>
 
-            <div class="year">2017</div>
+                                <p>{!! $year->description !!}</p>
 
-            <p class="time-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aliquam excepturi perspiciatis.</p>
+                            </div><!--./timeline-->
 
-            <p>Lorem ipsum dolor sit ameectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque</p>
+                        </div><!--./col-lg-4-->
+                    @endforeach
+                </div><!--./timeline-carousel-->
 
-          </div><!--./timeline-->  
+            </div><!--./row-->
 
-        </div><!--./col-lg-4-->
+        </div><!--./container-->
 
-        <div class="col-lg-12">
+    </section>
 
-          <div class="timeline">
 
-            <div class="year">2018</div>
 
-            <p class="time-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aliquam excepturi perspiciatis.</p>
+    <section class="about_bg" id="Riskmanagement">
 
-            <p>Lorem ipsum dolor sit ameectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque</p>
+        <div class="container">
 
-          </div><!--./timeline-->  
+            <div class="row">
 
-        </div><!--./col-lg-4-->
+                <div class="col-lg-10 offset-lg-1 text-center spaceb30">
 
-        <div class="col-lg-12">
+                    <h2 class="service_title">Team <span>Member</span></h2>
 
-          <div class="timeline">
+                    <p>— SENIOR MANAGEMENT TEAM —</p>
 
-            <div class="year">2019</div>
+                </div><!--./col-lg-10-->
 
-            <p class="time-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aliquam excepturi perspiciatis.</p>
+                @foreach($teams as $team)
+                    @if($team->type == 'senior_management')
+                        <div class="col-lg-3 col-md-6">
 
-            <p>Lorem ipsum dolor sit ameectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque</p>
+                            <div class="single-member">
 
-          </div><!--./timeline-->  
+                                <div class="member-image">
 
-        </div><!--./col-lg-4-->
+                                    <img src="{{url('').'/'.$team->image}}" alt="">
 
+                                    <div class="member-name">
 
+                                        <h4>{{$team->name}}</h4>
 
-         <div class="col-lg-12">
+                                    </div>
 
-          <div class="timeline">
+                                </div>
 
-            <div class="year">Today</div>
+                                <div class="member-caption">
 
-            <p class="time-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aliquam excepturi perspiciatis.</p>
+                                    <h5>{{$team->designation}}</h5>
 
-            <p>Lorem ipsum dolor sit ameectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque</p>
+                                    <p>{{$team->about}}</p>
 
-          </div><!--./timeline-->  
+                                </div>
 
-        </div><!--./col-lg-4-->
+                            </div><!--./single-member-->
 
-       </div><!--./timeline-carousel--> 
+                        </div><!--./col-lg-3-->
+                    @endif
+                @endforeach
 
-      </div><!--./row-->
+                <div class="col-lg-10 offset-lg-1 text-center spacet80 spaceb30">
 
-    </div><!--./container-->  
+                    <p>— BOARD OF MANAGERS —</p>
 
-  </section>
+                </div><!--./col-lg-10-->
 
+                @foreach($teams as $team)
+                    @if($team->type == 'board_of_managers')
+                        <div class="col-lg-3 col-md-6">
 
+                            <div class="single-member">
 
-  <section class="about_bg" id="Riskmanagement">
+                                <div class="member-image">
 
-    <div class="container">
+                                    <img src="{{url('').'/'.$team->image}}" alt="">
 
-      <div class="row">
+                                    <div class="member-name">
 
-        <div class="col-lg-10 offset-lg-1 text-center spaceb30">
+                                        <h4>{{$team->name}}</h4>
 
-            <h2 class="service_title">Team <span>Member</span></h2>
+                                    </div>
 
-            <p>— SENIOR MANAGEMENT TEAM —</p>
+                                </div>
 
-          </div><!--./col-lg-10-->
+                            </div><!--./single-member-->
 
-        <div class="col-lg-3 col-md-6">
+                        </div><!--./col-lg-3-->
+                    @endif
+                @endforeach
 
-          <div class="single-member">
+            </div><!--./row-->
 
-              <div class="member-image">
+        </div><!--./container-->
 
-                <img src="images/team1.jpg" alt="">
+    </section>
 
-                <div class="member-name">
-
-                  <h4>Rob Creamer</h4>
-
-                </div>
-
-              </div>
-
-              <div class="member-caption">
-
-                <h5>President & CEO</h5>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aliquam excepturi perspiciatis.</p>
-
-              </div>
-
-            </div><!--./single-member-->
-
-        </div><!--./col-lg-3-->
-
-
-
-        <div class="col-lg-3 col-md-6">
-
-          <div class="single-member">
-
-              <div class="member-image">
-
-                <img src="images/team1.jpg" alt="">
-
-                <div class="member-name">
-
-                  <h4>Christopher McNulty</h4>
-
-                </div>
-
-              </div>
-
-              <div class="member-caption">
-
-                <h5>Managing Director</h5>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aliquam excepturi perspiciatis.</p>
-
-              </div>
-
-            </div><!--./single-member-->
-
-        </div><!--./col-lg-3-->
-
-
-
-        <div class="col-lg-3 col-md-6">
-
-          <div class="single-member">
-
-              <div class="member-image">
-
-                <img src="images/team1.jpg" alt="">
-
-                <div class="member-name">
-
-                  <h4>Rob Creamer</h4>
-
-                </div>
-
-              </div>
-
-              <div class="member-caption">
-
-                <h5>President & CEO</h5>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aliquam excepturi perspiciatis.</p>
-
-              </div>
-
-            </div><!--./single-member-->
-
-        </div><!--./col-lg-3-->
-
-
-
-        <div class="col-lg-3 col-md-6">
-
-          <div class="single-member">
-
-              <div class="member-image">
-
-                <img src="images/team1.jpg" alt="">
-
-                <div class="member-name">
-
-                  <h4>Rob Creamer</h4>
-
-                </div>
-
-              </div>
-
-              <div class="member-caption">
-
-                <h5>President & CEO</h5>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aliquam excepturi perspiciatis.</p>
-
-              </div>
-
-            </div><!--./single-member-->
-
-        </div><!--./col-lg-3-->  
-
-
-
-        <div class="col-lg-10 offset-lg-1 text-center spacet80 spaceb30">
-
-            <p>— BOARD OF MANAGERS —</p>
-
-          </div><!--./col-lg-10-->
-
-         <div class="col-lg-3 col-md-6">
-
-          <div class="single-member">
-
-              <div class="member-image">
-
-                <img src="images/team1.jpg" alt="">
-
-                <div class="member-name">
-
-                  <h4>H. Arthur Brereton</h4>
-
-                </div>
-
-              </div>
-
-            </div><!--./single-member-->
-
-        </div><!--./col-lg-3-->
-
-         <div class="col-lg-3 col-md-6">
-
-          <div class="single-member">
-
-              <div class="member-image">
-
-                <img src="images/team1.jpg" alt="">
-
-                <div class="member-name">
-
-                  <h4>H. Arthur Brereton</h4>
-
-                </div>
-
-              </div>
-
-            </div><!--./single-member-->
-
-        </div><!--./col-lg-3--> 
-
-         <div class="col-lg-3 col-md-6">
-
-          <div class="single-member">
-
-              <div class="member-image">
-
-                <img src="images/team1.jpg" alt="">
-
-                <div class="member-name">
-
-                  <h4>H. Arthur Brereton</h4>
-
-                </div>
-
-              </div>
-
-            </div><!--./single-member-->
-
-        </div><!--./col-lg-3--> 
-
-         <div class="col-lg-3 col-md-6">
-
-          <div class="single-member">
-
-              <div class="member-image">
-
-                <img src="images/team1.jpg" alt="">
-
-                <div class="member-name">
-
-                  <h4>H. Arthur Brereton</h4>
-
-                </div>
-
-              </div>
-
-            </div><!--./single-member-->
-
-        </div><!--./col-lg-3-->   
-
-      </div><!--./row-->
-
-    </div><!--./container-->  
-
-  </section>
-
-
-
-  <section class="testimonial-area">
-
-     <div class="container">
-
-        <div class="row">
-
-            <div class="col-lg-10 offset-lg-1 text-center spaceb30">
-
-                <h2 class="service_title color-white">A Happy Client Is All We Need</h2>
-
-            </div><!--./col-lg-10-->
-
-           <div class="col-lg-8 offset-lg-2">  
-
-            <div class="owl-carousel testimonials-carousel">
-
-              <div class="testimonial-item">
-
-                <img src="images/member2.jpg" class="testimonial-img" alt="">
-
-                <h5>Antonio Conte</h5>
-
-                <h6>CEO of Barbara</h6>
-
-                <p>Always Speak the trouth vel tincidunt sed euismod nibh Quisque volutpat condimentum velit class aptent taciti sociosqu ad litora torquent per conubia nostra. "</p>
-
-
-
-              </div><!--./testimonial-item-->
-
-              <div class="testimonial-item">
-
-                <img src="images/member2.jpg" class="testimonial-img" alt="">
-
-                <h5>Antonio Conte</h5>
-
-                <h6>CEO of Barbara</h6>
-
-                <p>Always Speak the trouth vel tincidunt sed euismod nibh Quisque volutpat condimentum velit class aptent taciti sociosqu ad litora torquent per conubia nostra."</p>
-
-              </div><!--./testimonial-item-->
-
-           </div><!--./testimonials-carousel-->
-
-          </div><!--./col-lg-8--> 
-
-        </div><!--./row-->
-
-    </div><!--./container-->  
-
-  </section>
-
-  @stop
+@stop

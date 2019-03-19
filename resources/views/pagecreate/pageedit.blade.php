@@ -117,7 +117,7 @@
 </script>
 <div class="container">
 
-    <h4>Page Menu</h4>
+    <h4>Page Menu<a class="btn btn-success pull-left" href="{{url('admin/all-dynamic-pages')}}">Page List</a></h4>
     <hr>
     <div class="mycard">
         <form action="{{ url('admin/update-page-body') }}" method="post" id="createpost" enctype="multipart/form-data">

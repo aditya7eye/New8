@@ -19,7 +19,6 @@ class PageController extends Controller
         $id = base64_decode($id);
         $data = DynamicpageModel::find($id);
         return view('pagecreate.pageedit')->with(['data'=>$data]);
-        return $data;
 
 // return 'done';
     }

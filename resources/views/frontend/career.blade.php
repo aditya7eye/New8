@@ -1,189 +1,134 @@
 @extends('frontmaster.master')
 @section('title','Alliance | Career')
 @section('content')
-@php
-    $header = \App\HeaderModel::find(3);
-@endphp
+    @php
+        $header = \App\HeaderModel::find(3);
+        $careers = \App\Careers::where(['is_active'=>1])->get();
+    @endphp
 
-  <section class="innerabout">
+    <section class="innerabout">
 
-    <div class="container">
+        <div class="container">
 
-        <div class="row">
+            <div class="row">
 
-            <div class="col-lg-10 offset-lg-1">
+                <div class="col-lg-10 offset-lg-1">
 
-                <h1>{{ $header->heading }}</h1>
+                    <h1>{{ $header->heading }}</h1>
 
-                <p>{{ $header->description }}</p>
+                    <p>{{ $header->description }}</p>
 
 
-           </div><!--./col-lg-12--> 
+                </div><!--./col-lg-12-->
 
-       </div><!--./row-->
+            </div><!--./row-->
 
-    </div><!--./container-->  
+        </div><!--./container-->
 
-  </section><!-- #intro -->
+    </section><!-- #intro -->
 
 
 
-  
 
-  <section class="">
 
-    <div class="container spacet80 spaceb50">
+    <section class="">
 
-      <div class="row">
+        <div class="container spacet80 spaceb50">
 
-        <div class="col-lg-10 offset-lg-1 text-center spaceb50">
+            <div class="row">
 
-          <p>— CURRENT OPPORTUNITIES —</p>
+                <div class="col-lg-10 offset-lg-1 text-center spaceb50">
 
-        </div><!--./col-lg-10-->
+                    <p>— CURRENT OPPORTUNITIES —</p>
 
-        <div class="col-lg-12 col-md-12 col-12">
+                </div><!--./col-lg-10-->
 
-          <div class="careermain">
+                @foreach($careers as $career)
+                    <div class="col-lg-12 col-md-12 col-12">
 
-            <a href="contact.html#enquiry">
+                        <div class="careermain">
 
-              <h3>Internssips</h3>
+                            <a style="cursor:none;">
 
-              <h5>Quantitative Risk Intern - Spring 2019</h5>
+                                <h3>{{$career->designation}}</h3>
 
-              <p><i class="fas fa-map-marker-alt"></i>Chicago, Illinois</p>
+                                <h5>{{$career->title}}</h5>
 
-            </a>  
+                                <p><i class="fas fa-map-marker-alt"></i>{{$career->location}}</p>
 
-          </div><!--./careermain-->
+                            </a>
 
-        </div><!--./col-lg-6-->
+                        </div><!--./careermain-->
 
-        <div class="col-lg-12 col-md-12 col-12">
+                    </div><!--./col-lg-6-->
+                @endforeach
 
-          <div class="careermain">
+                {{--<div class="col-lg-12 col-md-12 col-12">--}}
 
-            <a href="contact.html#enquiry">
+                    {{--<div class="careermain">--}}
 
-              <h3>Software Development</h3>
+                        {{--<a href="contact.html#enquiry">--}}
 
-              <h5>Senior C++ Developer</h5>
+                            {{--<h3>Software Development</h3>--}}
 
-              <p><i class="fas fa-map-marker-alt"></i>Chicago, Illinois</p>
+                            {{--<h5>Senior C++ Developer</h5>--}}
 
-            </a>  
+                            {{--<p><i class="fas fa-map-marker-alt"></i>Chicago, Illinois</p>--}}
 
-          </div><!--./careermain-->
+                        {{--</a>--}}
 
-        </div><!--./col-lg-6-->
+                    {{--</div><!--./careermain-->--}}
 
-        <div class="col-lg-12 col-md-12 col-12">
+                {{--</div><!--./col-lg-6-->--}}
 
-          <div class="careermain">
+                {{--<div class="col-lg-12 col-md-12 col-12">--}}
 
-            <a href="contact.html#enquiry">
+                    {{--<div class="careermain">--}}
 
-              <h3>Web Development</h3>
+                        {{--<a href="contact.html#enquiry">--}}
 
-              <h5>Quantitative Risk Intern - Spring 2019</h5>
+                            {{--<h3>Web Development</h3>--}}
 
-              <p><i class="fas fa-map-marker-alt"></i>Chicago, Illinois</p>
+                            {{--<h5>Quantitative Risk Intern - Spring 2019</h5>--}}
 
-            </a>  
+                            {{--<p><i class="fas fa-map-marker-alt"></i>Chicago, Illinois</p>--}}
 
-          </div><!--./careermain-->
+                        {{--</a>--}}
 
-        </div><!--./col-lg-6-->
+                    {{--</div><!--./careermain-->--}}
 
-        <div class="col-lg-12 col-md-12 col-12">
+                {{--</div><!--./col-lg-6-->--}}
 
-          <div class="careermain">
+                {{--<div class="col-lg-12 col-md-12 col-12">--}}
 
-            <a href="contact.html#enquiry">
+                    {{--<div class="careermain">--}}
 
-              <h3>Trading</h3>
+                        {{--<a href="contact.html#enquiry">--}}
 
-              <h5>Discretionary Trader</h5>
+                            {{--<h3>Trading</h3>--}}
 
-              <p><i class="fas fa-map-marker-alt"></i>Dubin, Ireland</p>
+                            {{--<h5>Discretionary Trader</h5>--}}
 
-              <h5>Junior Trader</h5>
+                            {{--<p><i class="fas fa-map-marker-alt"></i>Dubin, Ireland</p>--}}
 
-              <p><i class="fas fa-map-marker-alt"></i>Dubin, Ireland</p>
+                            {{--<h5>Junior Trader</h5>--}}
 
-              <h5>Quantitative Trader</h5>
+                            {{--<p><i class="fas fa-map-marker-alt"></i>Dubin, Ireland</p>--}}
 
-              <p><i class="fas fa-map-marker-alt"></i>Dubin, Ireland</p>
+                            {{--<h5>Quantitative Trader</h5>--}}
 
-            </a>  
+                            {{--<p><i class="fas fa-map-marker-alt"></i>Dubin, Ireland</p>--}}
 
-          </div><!--./careermain-->
+                        {{--</a>--}}
 
-        </div><!--./col-lg-6-->
+                    {{--</div><!--./careermain-->--}}
 
-      </div><!--./row-->
+                {{--</div><!--./col-lg-6-->--}}
 
-    </div><!--./container-->  
+            </div><!--./row-->
 
-  </section>
+        </div><!--./container-->
 
+    </section>
 
-
-  <section class="testimonial-area">
-
-     <div class="container">
-
-        <div class="row">
-
-            <div class="col-lg-10 offset-lg-1 text-center spaceb30">
-
-                <h2 class="service_title color-white">A Happy Client Is All We Need</h2>
-
-            </div><!--./col-lg-10-->
-
-           <div class="col-lg-8 offset-lg-2">  
-
-            <div class="owl-carousel testimonials-carousel">
-
-              <div class="testimonial-item">
-
-                <img src="images/member2.jpg" class="testimonial-img" alt="">
-
-                <h5>Antonio Conte</h5>
-
-                <h6>CEO of Barbara</h6>
-
-                <p>Always Speak the trouth vel tincidunt sed euismod nibh Quisque volutpat condimentum velit class aptent taciti sociosqu ad litora torquent per conubia nostra. "</p>
-
-
-
-              </div><!--./testimonial-item-->
-
-              <div class="testimonial-item">
-
-                <img src="images/member2.jpg" class="testimonial-img" alt="">
-
-                <h5>Antonio Conte</h5>
-
-                <h6>CEO of Barbara</h6>
-
-                <p>Always Speak the trouth vel tincidunt sed euismod nibh Quisque volutpat condimentum velit class aptent taciti sociosqu ad litora torquent per conubia nostra. "</p>
-
-
-
-              </div><!--./testimonial-item-->
-
-           </div><!--./testimonials-carousel-->
-
-          </div><!--./col-lg-8--> 
-
-        </div><!--./row-->
-
-    </div><!--./container-->  
-
-  </section>
-
-
-
-  @stop
+@stop

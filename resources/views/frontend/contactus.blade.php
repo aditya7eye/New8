@@ -1,152 +1,141 @@
 @extends('frontmaster.master')
 @section('title','Alliance | Contact Us')
 @section('content')
-@php
-    $header = \App\HeaderModel::find(3);
-@endphp
-  <section class="innerabout">
+    @php
+        $header = \App\HeaderModel::find(4);
+        $contact_us = \App\ContactUs::find(1);
+    @endphp
+    <section class="innerabout">
 
-    <div class="container">
+        <div class="container">
 
-        <div class="row">
+            <div class="row">
 
-            <div class="col-lg-10 offset-lg-1">
+                <div class="col-lg-10 offset-lg-1">
 
-                <h1>{{ $header->heading }}</h1>
+                    <h1>{{ $header->heading }}</h1>
 
-                <p>{{ $header->description }}</p>
+                    <p>{{ $header->description }}</p>
 
-           </div><!--./col-lg-12--> 
+                </div><!--./col-lg-12-->
 
-       </div><!--./row-->
+            </div><!--./row-->
 
-    </div><!--./container-->  
+        </div><!--./container-->
 
-  </section><!-- #intro -->
+    </section><!-- #intro -->
 
 
 
-  
 
-  <section class="">
 
-    <div class="container spacet80 spaceb50">
+    <section class="">
 
-      <div class="row">
+        <div class="container spacet80 spaceb50">
 
-        <div class="col-lg-4 col-md-4 col-12">
+            <div class="row">
 
-           <div class="contactbox">
+                <div class="col-lg-4 col-md-4 col-12">
 
-              <i class="fas fa-map-marker-alt"></i>
+                    <div class="contactbox">
 
-              <h3>ADDRESS</h3>
+                        <i class="fas fa-map-marker-alt"></i>
 
-              <p>12 King Street, Melbourne 3000, AUstralia</p>
+                        <h3>ADDRESS</h3>
 
-            </div>
+                        <p>{{$contact_us->address}}</p>
 
-        </div><!--./col-lg-4-->
+                    </div>
 
+                </div><!--./col-lg-4-->
 
 
-        <div class="col-lg-4 col-md-4 col-12">
+                <div class="col-lg-4 col-md-4 col-12">
 
-           <div class="contactbox">
+                    <div class="contactbox">
 
-              <i class="fas fa-phone"></i>
+                        <i class="fas fa-phone"></i>
 
-              <h3>PHONE</h3>
+                        <h3>PHONE</h3>
 
-              <p>+61 3 8376 6284</p>
+                        <p>{{$contact_us->contact}}</p>
 
-            </div>
+                    </div>
 
-        </div><!--./col-lg-4-->
+                </div><!--./col-lg-4-->
 
 
+                <div class="col-lg-4 col-md-4 col-12">
 
-        <div class="col-lg-4 col-md-4 col-12">
+                    <div class="contactbox">
 
-           <div class="contactbox">
+                        <i class="fas fa-envelope"></i>
 
-              <i class="fas fa-envelope"></i>
+                        <h3>EMAIL</h3>
 
-              <h3>EMAIL</h3>
+                        <p>{{$contact_us->email}}</p>
 
-              <p>contact_us@alliance.com</p>
+                    </div>
 
-            </div>
+                </div><!--./col-lg-4-->
 
-        </div><!--./col-lg-4-->
 
+            </div><!--./row-->
 
+        </div><!--./container-->
 
-      </div><!--./row-->
+    </section>
 
-    </div><!--./container-->  
 
-  </section>
 
+    <section class="bggray spacet80 spaceb80" id="enquiry">
 
+        <div class="container">
 
-  <section class="bggray spacet80 spaceb80" id="enquiry">
+            <div class="row">
 
-    <div class="container">
+                <div class="col-lg-12">
 
-      <div class="row">
+                    <div class="contact-wrap">
 
-        <div class="col-lg-12">
+                        <h4>FOR ENQUIRY</h4>
 
-          <div class="contact-wrap">
+                        <form action="{{url('store_enq')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
 
-            <h4>FOR ENQUIRY</h4>
+                                <div class="col-sm-6 col-12">
 
-            <form action="#">
+                                    <input type="text" class="form-control" name="fname" placeholder="First Name*"
+                                           required>
 
-              <div class="row">
+                                </div>
 
-                  <div class="col-sm-6 col-12">
 
-                      <input type="text" class="form-control" placeholder="First Name*">
+                                <div class="col-sm-6 col-12">
 
-                  </div>
+                                    <input type="text" class="form-control" name="lname" placeholder="Last Name*"
+                                           required>
 
+                                </div>
 
+                                <div class="col-sm-6 col-12">
 
-                  <div class="col-sm-6 col-12">
+                                    <input type="email" class="form-control" name="email" placeholder="Email Address*"
+                                           required>
 
-                      <input type="text" class="form-control" placeholder="Last Name*">
+                                </div>
 
-                  </div>
+                                <div class="col-sm-6 col-12">
 
-                  <div class="col-sm-6 col-12">
+                                    <input type="text" class="form-control" name="contact" placeholder="Phone Number*"
+                                           required>
 
-                      <input type="email" class="form-control" placeholder="Email Address*">
+                                </div>
 
-                  </div>
+                                <div class="col-sm-6 col-12">
 
-                  <div class="col-sm-6 col-12">
-
-                    <input type="text" class="form-control" placeholder="Phone Number*">
-
-                  </div>
-
-                  <div class="col-sm-6 col-12">
-
-                      <input type="text" class="form-control" placeholder="City">
-
-                  </div>
-
-                   <div class="col-sm-6 col-12">
-
-                                    <select class="form-control">
-
-                                      <option value="" class="">Select State</option>
-
-                                      <option value="0">Not Applicable</option><option value="1">Alaska</option><option value="2">Alabama</option><option value="3">Arkansas</option><option value="4">Arizona</option><option value="5">California</option><option value="6">Colorado</option><option value="7">Connecticut</option><option value="8">District Of Columbia</option><option value="9">Delaware</option><option value="10">Florida</option><option value="11">Georgia</option><option value="12">Hawaii</option><option value="13">Iowa</option><option value="14">Idaho</option><option value="15">Illinois</option><option value="16">Indiana</option><option value="17">Kansas</option><option value="18">Kentucky</option><option value="19">Louisiana</option><option value="20">Massachusetts</option><option value="21">Maryland</option><option value="22">Maine</option><option value="23">Michigan</option><option value="24">Minnesota</option><option value="25">Missouri</option><option value="26">Mississippi</option><option value="27">Montana</option><option value="28">North Carolina</option><option value="29">North Dakota</option><option value="30">Nebraska</option><option value="31">New Hampshire</option><option value="32">New Jersey</option><option value="33">New Mexico</option><option value="34">Nevada</option><option value="35">New York</option><option value="36">Ohio</option><option value="37">Oklahoma</option><option value="38">Oregon</option><option value="39">Pennsylvania</option><option value="40">Rhode Island</option><option value="41">South Carolina</option><option value="42">South Dakota</option><option value="43">Tennessee</option><option value="44">Texas</option><option value="45">Utah</option><option value="46">Virginia</option><option value="47">Vermont</option><option value="48">Washington</option><option value="49">Wisconsin</option><option value="50">West Virginia</option><option value="51">Wyoming</option></select>
-
-                                    </select>
+                                    <input type="text" class="form-control" name="city" placeholder="City">
 
                                 </div>
 
@@ -154,92 +143,149 @@
 
                                     <select class="form-control">
 
-                                      <option value="" class="">How Did You Hear About Us? *</option>
+                                        <option value="" name="state" class="">Select State</option>
 
-                                      <option value="0">LinkedIn</option>
+                                        <option>Not Applicable</option>
+                                        <option>Alaska</option>
+                                        <option>Alabama</option>
+                                        <option>Arkansas</option>
+                                        <option>Arizona</option>
+                                        <option>California</option>
+                                        <option>Colorado</option>
+                                        <option>Connecticut</option>
+                                        <option>District Of Columbia</option>
+                                        <option>Delaware</option>
+                                        <option>Florida</option>
+                                        <option>Georgia</option>
+                                        <option>Hawaii</option>
+                                        <option>Iowa</option>
+                                        <option>Idaho</option>
+                                        <option>Illinois</option>
+                                        <option>Indiana</option>
+                                        <option>Kansas</option>
+                                        <option>Kentucky</option>
+                                        <option>Louisiana</option>
+                                        <option>Massachusetts</option>
+                                        <option>Maryland</option>
+                                        <option>Maine</option>
+                                        <option>Michigan</option>
+                                        <option>Minnesota</option>
+                                        <option>Missouri</option>
+                                        <option>Mississippi</option>
+                                        <option>Montana</option>
+                                        <option>North Carolina</option>
+                                        <option>North Dakota</option>
+                                        <option>Nebraska</option>
+                                        <option>New Hampshire</option>
+                                        <option>New Jersey</option>
+                                        <option>New Mexico</option>
+                                        <option>Nevada</option>
+                                        <option>New York</option>
+                                        <option>Ohio</option>
+                                        <option>Oklahoma</option>
+                                        <option>Oregon</option>
+                                        <option>Pennsylvania</option>
+                                        <option>Rhode Island</option>
+                                        <option>South Carolina</option>
+                                        <option>South Dakota</option>
+                                        <option>Tennessee</option>
+                                        <option>Texas</option>
+                                        <option>Utah</option>
+                                        <option>Virginia</option>
+                                        <option>Vermont</option>
+                                        <option>Washington</option>
+                                        <option>Wisconsin</option>
+                                        <option>West Virginia</option>
+                                        <option>Wyoming</option>
+                                    </select>
 
-                                      <option value="1">Indeed</option>
 
-                                      <option value="2">Glassdoor</option>
+                                </div>
 
-                                      <option value="3">Handshake</option>
+                                <div class="col-sm-6 col-12">
 
-                                      <option value="4">Built In Chicago</option>
+                                    <select class="form-control" name="hear_about" required>
 
-                                      <option value="5">Employee</option>
-
-                                      <option value="6">Career Fair</option>
-
-                                      <option value="7">University Career Site</option>
-
-                                      <option value="8">Recruitment Agency</option>
-
-                                      <option value="9">Other</option>
-
+                                        <option value="" class="">How Did You Hear About Us? *</option>
+                                        <option>LinkedIn</option>
+                                        <option>Indeed</option>
+                                        <option>Glassdoor</option>
+                                        <option>Handshake</option>
+                                        <option>Built In Chicago</option>
+                                        <option>Employee</option>
+                                        <option>Career Fair</option>
+                                        <option>University Career Site</option>
+                                        <option>Recruitment Agency</option>
+                                        <option>Other</option>
                                     </select>
 
                                 </div>
 
-                      <div class="col-sm-6">
+                                <div class="col-sm-6">
 
-                        <input type="text" class="form-control" placeholder="Other">
+                                    <input type="text" name="other" class="form-control" placeholder="Other">
 
-                      </div>
+                                </div>
 
-                       <div class="col-sm-6">
+                                <div class="col-sm-6">
 
-                        <textarea class="form-control" placeholder="Message"></textarea>
+                                    <textarea class="form-control" name="message" placeholder="Message"></textarea>
 
-                        <!-- <input type="text" class="form-control" placeholder="Message"> -->
+                                    <!-- <input type="text" class="form-control" placeholder="Message"> -->
 
-                      </div>
+                                </div>
 
-                      <div class="col-sm-6">
+                                <div class="col-sm-6">
 
-                        <div class="input-group">
+                                    <div class="input-group">
 
-                            <input type="text" class="form-control file-upload-text" placeholder="Upload Resume" />
+                                        <input type="text" class="form-control file-upload-text"
+                                               placeholder="Upload Resume"/>
 
-                            <span class="input-group-btn">
+                                        <span class="input-group-btn">
 
                                 <button type="button" class="btn btn-default file-upload-btn btnupload">
 
                                      <i class="fa fa-upload"></i> Upload 
 
-                                    <input type="file" class="file-upload" name="myFile" />
+                                    <input type="file" name="resume" class="file-upload"/>
 
                                 </button>
 
                             </span>
 
-                        </div><!--./input-group-->
+                                    </div><!--./input-group-->
 
-                      </div><!--./col-sm-6-->        
+                                </div><!--./col-sm-6-->
 
-                      <div class="col-sm-12">
+                                <div class="col-sm-12">
 
-                        <button style="border:0" href="#" type="submit" class="btn2 btngray btn--border btn--center btn--border-lightgrey mt-3"> <span class="btn-text">Send Message</span> <span class="btn-arrow"> <i class="fa fa-arrow-right"></i></span></button>
+                                    <button style="border:0" href="#" type="submit"
+                                            class="btn2 btngray btn--border btn--center btn--border-lightgrey mt-3">
+                                        <span class="btn-text">Send Message</span> <span class="btn-arrow"> <i
+                                                    class="fa fa-arrow-right"></i></span></button>
+
+                                </div>
+
+                            </div>
+
+                        </form>
 
                     </div>
 
-                </div>
+                </div><!--./col-lg-12-->
 
-              </form>
+            </div><!--./row-->
 
-            </div>
+        </div><!--./container-->
 
-          </div><!--./col-lg-12-->            
-
-       </div><!--./row-->
-
-     </div><!--./container-->  
-
-  </section>
+    </section>
 
 
 
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.724176445409!2d144.9552295159043!3d-37.81992914217038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d52763e4c89%3A0x6459d97ded6ec855!2s12+King+St%2C+Melbourne+VIC+3000%2C+Australia!5e0!3m2!1sen!2sin!4v1551770164889" width="100%" height="500" frameborder="0" style="border:0; display: block;" allowfullscreen></iframe>
+    <iframe src="{{$contact_us->map_url}}" width="100%" height="500" frameborder="0" style="border:0; display: block;"
+            allowfullscreen></iframe>
 
 
 
- @stop
+@stop

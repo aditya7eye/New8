@@ -1,7 +1,7 @@
 @extends('backendmaster.master')
-@section('title','Alliance | Page Create')
+@section('title','Alliance | Team')
 @section('content') @php
-    $page = \App\PagemenuModel::whereis_del(0)->wheretype(0)->get();
+    $page = \App\Team::whereis_active(1)->get();
 @endphp
 <link rel="stylesheet" href="{{ url('css/cropper.min.css') }}">
 <link rel="stylesheet" href="{{ url('css/main.css') }}">
@@ -117,10 +117,10 @@
 </script>
 <div class="container">
 
-    <h4>Create Page<a class="btn btn-success pull-left" href="{{url('admin/all-dynamic-pages')}}">Page List</a></h4>
+    <h4>Edit Team</h4>
     <hr>
     <div class="mycard">
-        <form action="{{ url('admin/create-page-body') }}" method="post" id="createpost" enctype="multipart/form-data">
+        <form action="{{ url('admin/update-team') }}" method="post" id="createpost" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 {{-- <div class="col-sm-6">
@@ -144,47 +144,51 @@
                         <input type="text" name="page" id="page" placeholder="Enter Page Name" class="form-control" required>
                     </div>
                 </div> --}}
-                <div class="col-sm-12">
+                <input type="hidden" name="uid" value="{{ $data->id }}">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="">Title</label>
-                        <input type="text" name="title" id="title" placeholder="Enter Title" class="form-control">
-                        </select>
+                        <label for="">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Enter Name" value="{{ $data->name }}"
+                               class="form-control">
                     </div>
                 </div>
 
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="">Description</label>
-                        <textarea id="editor1" name="des" class="form-control" rows="5"></textarea>
+                        <label for="">Designation</label>
+                        <input type="text" name="designation" id="designation" placeholder="Enter Designation"
+                               value="{{ $data->designation }}"
+                               class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">Type</label>
+                        <select name="type" id="type" class="form-control">
+                            @if($data->type=='senior_management')
+                                <option value="senior_management" selected>Senior Management</option>
+                                <option value="board_of_managers">Board Of Managers</option>
+                            @else
+                                <option value="senior_management">Senior Management</option>
+                                <option value="board_of_managers" selected>Board Of Managers</option>
+                            @endif
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">About</label>
+                        <textarea id="editor1" name="about" class="form-control"
+                                  rows="5">{{ $data->about }}</textarea>
                         {{-- <textarea name="des" id="description"  rows="8" class="form-control" maxlength="1200"></textarea> --}}
                         {{--<input type="hidden" name="des" id="description">--}}
                     </div>
                 </div>
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="">Status</label>
-                        <select name="status" id="status" class="form-control">
-                            <option value="1">Active</option>
-                            <option value="0">De-Active</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="">Show On Home</label>
-                        <select name="home" id="home" class="form-control">
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                    </div>
-                </div>
-
                 <input type="hidden" name="myimage" id="myimage">
                 <div class="col-sm-12">
                     <div class="upload_image_box">
                         <div class="upload_caption">
-                            Upload photos from your computer
+                            Upload photos from your computer(255*290)
                         </div>
                         <div class="btn-group" data-toggle="modal" data-target="#modal_crop">
 
@@ -203,7 +207,8 @@
                     </div>
                     <div class="btn-group" data-toggle="modal" data-target="#modal_crop">
 
-                        <img style="height:300px; width:auto;" src="" alt="" id="myresultimage">
+                        <img style="height:300px; width:auto;" src="{{ url('dynamic_page_image').'/'.$data->image }}"
+                             alt="" id="myresultimage">
                     </div>
                     <!-- <input type="file" name="profile_pic" id="recend_select_file" class="profile-upload-pic"
                             onchange="ChangeSetImage(this, _UserProfile);"/>-->
@@ -216,7 +221,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             &nbsp;
-            <button onclick="enterthis();" class="btn btn-primary btn-sm">Upload</button>
+            <button onclick="enterthis();" class="btn btn-primary btn-sm">Update</button>
         </div>
     </div>
 </div>
@@ -238,7 +243,7 @@
                                                    "/>
                                 </span>
                             </span> --}}
-                            <input type="file" id="file-input" name="file+"
+                            <input type="file" id="file-input" name="file+" accept="image/x-png,image/gif,image/jpeg"
                                    onchange="ChangeSetImage(this, image_frout, file_text_frount);">
                             <input type="text" id="file_text_frount" class="form-control" readonly="">
                         </div>
@@ -250,7 +255,7 @@
                         <div class="result">
                             {{-- <img class="cropped" id="image_frout1" src="assets/images/NoPreview_CropImg.png" alt=""> --}}
                             <img class="cropped" id="image_frout1"
-                                 src="http://lagnphere.com/assets/images/NoPreview_CropImg.png" alt="">
+                                 src="{{url('NoPreview_CropImg.png')}}" alt="">
                         </div>
                     </div>
                     <div class="box-2 img-result hide">
@@ -323,7 +328,6 @@
         }
 
     }
-
 
 
     $("#userprofilepic").on('submit', function (e) {

@@ -169,33 +169,31 @@ function deletepage(id)
     }
 
 
-
-    function deactivatepage(id)
-    {
-        Swal.fire({
-  title: 'Are you sure?',
-  text: "De-Activate this Page!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, De-Activated it!'
-}).then((result) => {
-  if (result.value) {
-    $.get('{{ url('admin/deactivatepage') }}', {
-        did: id
-                }, function (data) {
-                    // console.log(data);
-                    $("#pagetable").load(location.href + " #pagetable");
-                });
-    Swal.fire(
-      'De-Activated',
-      'Your Page has been De-Activated.',
-      'success'
-    )
-  }
-})
-    }
+function deactivatepage(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "De-Activate this Page!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, De-Activated it!'
+    }).then((result) => {
+        if (result.value) {
+            $.get('{{ url('admin/deactivatepage') }}', {
+                did: id
+            }, function (data) {
+                // console.log(data);
+                $("#pagetable").load(location.href + " #pagetable");
+            });
+            Swal.fire(
+                    'De-Activated',
+                    'Your Page has been De-Activated.',
+                    'success'
+            )
+        }
+    })
+}
 
 function editmyname(id , page_name)
 {

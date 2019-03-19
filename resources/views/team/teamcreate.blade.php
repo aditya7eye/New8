@@ -1,5 +1,5 @@
 @extends('backendmaster.master')
-@section('title','Alliance | Page Create')
+@section('title','Alliance | Team Create')
 @section('content') @php
     $page = \App\PagemenuModel::whereis_del(0)->wheretype(0)->get();
 @endphp
@@ -117,10 +117,10 @@
 </script>
 <div class="container">
 
-    <h4>Create Page<a class="btn btn-success pull-left" href="{{url('admin/all-dynamic-pages')}}">Page List</a></h4>
+    <h4>Create Page</h4>
     <hr>
     <div class="mycard">
-        <form action="{{ url('admin/create-page-body') }}" method="post" id="createpost" enctype="multipart/form-data">
+        <form action="{{ url('admin/create-team') }}" method="post" id="createpost" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 {{-- <div class="col-sm-6">
@@ -144,39 +144,36 @@
                         <input type="text" name="page" id="page" placeholder="Enter Page Name" class="form-control" required>
                     </div>
                 </div> --}}
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="">Title</label>
-                        <input type="text" name="title" id="title" placeholder="Enter Title" class="form-control">
-                        </select>
+                        <label for="">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Enter Name" class="form-control">
                     </div>
                 </div>
 
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="">Description</label>
-                        <textarea id="editor1" name="des" class="form-control" rows="5"></textarea>
+                        <label for="">Designation</label>
+                        <input type="text" name="designation" id="designation" placeholder="Enter Designation"
+                               class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">Type</label>
+                        <select name="type" id="type" class="form-control">
+                            <option value="senior_management" selected>Senior Management</option>
+                            <option value="board_of_managers">Board Of Managers</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">About</label>
+                        <textarea id="editor1" name="about" class="form-control"
+                                  rows="5"></textarea>
                         {{-- <textarea name="des" id="description"  rows="8" class="form-control" maxlength="1200"></textarea> --}}
                         {{--<input type="hidden" name="des" id="description">--}}
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="">Status</label>
-                        <select name="status" id="status" class="form-control">
-                            <option value="1">Active</option>
-                            <option value="0">De-Active</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="">Show On Home</label>
-                        <select name="home" id="home" class="form-control">
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
                     </div>
                 </div>
 
@@ -184,7 +181,7 @@
                 <div class="col-sm-12">
                     <div class="upload_image_box">
                         <div class="upload_caption">
-                            Upload photos from your computer
+                            Upload photos from your computer(255*290)
                         </div>
                         <div class="btn-group" data-toggle="modal" data-target="#modal_crop">
 
@@ -238,7 +235,7 @@
                                                    "/>
                                 </span>
                             </span> --}}
-                            <input type="file" id="file-input" name="file+"
+                            <input type="file" id="file-input" name="file+" accept="image/x-png,image/gif,image/jpeg"
                                    onchange="ChangeSetImage(this, image_frout, file_text_frount);">
                             <input type="text" id="file_text_frount" class="form-control" readonly="">
                         </div>
@@ -323,7 +320,6 @@
         }
 
     }
-
 
 
     $("#userprofilepic").on('submit', function (e) {
