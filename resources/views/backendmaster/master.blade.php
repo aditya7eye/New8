@@ -59,9 +59,14 @@
           <span>What We Do</span></a>
       </li>
       <li class="nav-item active">
+        <a class="nav-link" href="{{ url('admin/all-dynamic-pages') }}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Page</span></a>
+      </li>
+      <li class="nav-item active">
           <a class="nav-link" href="{{ url('admin/page-create') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Page</span></a>
+            <span>Page Create</span></a>
         </li>
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('admin/page-menu') }}">
@@ -73,8 +78,11 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Header's</span></a>
       </li>
-      
-      
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url('admin/happy-client') }}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Client</span></a>
+      </li>
       <hr class="sidebar-divider d-none d-md-block">
 
       <!-- Sidebar Toggler (Sidebar) -->

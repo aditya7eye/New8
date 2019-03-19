@@ -1,5 +1,5 @@
 @extends('frontmaster.master')
-@section('title','Alliance | Dynamic')
+@section('title', $data->title )
 @section('content')
 <section class="bggray spacet80 spaceb80">
 

@@ -18,10 +18,39 @@ class PageController extends Controller
     {
         $id = base64_decode($id);
         $data = DynamicpageModel::find($id);
-        return view('pagecreate.pageedit');
+        return view('pagecreate.pageedit')->with(['data'=>$data]);
         return $data;
 
 // return 'done';
+    }
+
+    function updatepagebody()
+    {
+        $data = request('myimage');
+        $data1 = DynamicpageModel::find(request('uid'));
+        if(request('myimage')!="")
+        {
+            list($type, $data) = explode(';', $data);
+            list(, $data) = explode(',', $data);
+            $data = base64_decode($data);
+            $image_name = time() . '.png';
+            $path = "dynamic_page_image/" . $image_name;
+            file_put_contents($path, $data);
+            $data1->image = $image_name ;
+    
+        }
+      
+       
+        // $data->page_id = request('page');
+        $data1->title = request('title');
+        $data1->description = request('des');
+        $data1->date = request('date');
+        $data1->status = request('status');
+        $data1->home = request('home');
+        
+        $data1->save();
+
+        return redirect('admin/all-dynamic-pages')->with('message', 'Page has been Updated');
     }
 
     function pagecreate()
@@ -33,22 +62,26 @@ class PageController extends Controller
     {
         // return $_REQUEST;
         $data = request('myimage');
-        list($type, $data) = explode(';', $data);
-        list(, $data) = explode(',', $data);
-        $data = base64_decode($data);
-        $image_name = time() . '.png';
-        $path = "dynamic_page_image/" . $image_name;
-        file_put_contents($path, $data);
+        $data1 = new DynamicpageModel();
+        if(request('myimage')!="")
+        {
+            list($type, $data) = explode(';', $data);
+            list(, $data) = explode(',', $data);
+            $data = base64_decode($data);
+            $image_name = time() . '.png';
+            $path = "dynamic_page_image/" . $image_name;
+            file_put_contents($path, $data);
+            $data1->image = $image_name ;
+    
+        }
 
-        $data = new DynamicpageModel();
         // $data->page_id = request('page');
-        $data->title = request('title');
-        $data->description = request('des');
-        $data->date = request('date');
-        $data->status = request('status');
-        $data->home = request('home');
-        $data->image = $image_name;
-        $data->save();
+        $data1->title = request('title');
+        $data1->description = request('des');
+        $data1->date = request('date');
+        $data1->status = request('status');
+        $data1->home = request('home');
+        $data1->save();
 
         return back()->with('message', 'Page has been Created');
 

@@ -19,13 +19,14 @@ $page = \App\DynamicpageModel::get();
  
 <div class="container">
 
-    <h4>Page Menu</h4>
+    <h4>Page List</h4>
     <div class="mycard">
     <table class="table table-striped">
         <thead class="thead-inverse">
             <tr>
                 <th>#</th>
-                <th>Name</th>
+                <th>Page Title</th>
+                <th>Show On Home</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -34,11 +35,10 @@ $page = \App\DynamicpageModel::get();
                 <tr>
                         <td scope="row">{{ $index+1 }}</td>
                         <td><b>{{ $item->title }}</b></td>
+                        <td>{{  $item->home=="1" ? 'Show' : 'Not Show' }}</td>
                         <td><a href="{{ url('admin/page-edit').'/'.base64_encode($item->id)}}"><button class="btn btn-success btn-sm">Edit</button></a></td>
                     </tr>
                 @endforeach
-          
-              
             </tbody>
     </table>
     </div>

@@ -11,7 +11,13 @@ class DynamicController extends Controller
     {
         $id = base64_decode($id);
         $data = DynamicpageModel::where(['id' => $id])->first();
-        return view('frontend.dynamic')->with(['data' => $data]);
+        if(isset($data->image))
+        {
+            return view('frontend.dynamic')->with(['data' => $data]);
+        }
+        else{
+            return view('frontend.withoutimage')->with(['obj' => $data]);
+        }
     }
     
 }

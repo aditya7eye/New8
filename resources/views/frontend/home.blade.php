@@ -142,34 +142,16 @@
 
 
 
-  <section class="about_bg">
-
-      <div class="container">
-
-          <div class="row">
-
-              <div class="col-lg-10 offset-lg-1 text-center">
-
-                  <p class="colorblack">— OUR CULTURE —</p>
-
-                  <h2 class="service_title">THE BEST. <span>THE BRIGHTEST.</span></h2>
-
-                  <p class="font18 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum nec risus et suscipit Curabitur metus ipsum.simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-
-                  <!--  <a class="btn3 btngray btn--border3 btn--primary3 btn--animated3">All Positions</a> -->
-
-                  <a href="careers.html" class="btn2 btngray btn--border btn--center btn--border-lightgrey"> <span class="btn-text">All Positions</span> <span class="btn-arrow"> <i class="fa fa-arrow-right"></i></span></a>
-
-              </div><!--./col-lg-10-->
-
-          </div><!--./row-->
-
-      </div><!--./container-->  
-
-  </section>
+  
 
 
+@foreach ($homepage as $obj)
+    @php
+        $slider = \App\PagemenuModel::wherepage_id($obj->id)->whereis_active(1)->whereis_del(0)->first();
+        // echo $slider;
+    @endphp
 
+    @if(isset($obj->image))
   <section class="bggray spacet80 spaceb80">
 
       <div class="container">
@@ -178,7 +160,7 @@
 
             <div class="col-lg-10 offset-lg-1 text-center spaceb30">
 
-                <h2 class="service_title">WHERE MARKETS <span>ARE MADE.</span></h2>
+                <h2 class="service_title">{{ $obj->title }}</h2>
 
             </div><!--./col-lg-10-->
 
@@ -190,7 +172,7 @@
 
                         <div class="features-img">
 
-                            <img src="images/about-left.jpg" alt="">
+                            <img src="{{ url('dynamic_page_image').'/'.$obj->image }}" alt="">
 
                         </div>           
 
@@ -204,15 +186,10 @@
 
                 <div class="aboutright">
 
-                    <h4>Locally Grown with International Success</h4>
-
-                    <p class="pitalic">Excepteur sint occaecat cupidatat non proident Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</p>
-
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat null.</p>
-
-                    <p>Excepteur sint occaecat cupidatat non proident Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</p>
-
-                     <a href="whatwedo.html" class="btn2 btngray btn--border btn--center btn--border-lightgrey mt-3"> <span class="btn-text">What We Do</span> <span class="btn-arrow"> <i class="fa fa-arrow-right"></i></span></a>
+                   {!! $obj->description !!}
+                     @if(isset($slider))
+                      <a href="{{ url('').'/'.$slider->link.'/'.base64_encode($obj->id).'/@' }}" class="btn2 btngray btn--border btn--center btn--border-lightgrey mt-3"> <span class="btn-text">See More</span> <span class="btn-arrow"> <i class="fa fa-arrow-right"></i></span></a>
+                       @endif
 
                 </div><!--./aboutright-->
 
@@ -223,8 +200,35 @@
     </div><!--./container-->  
 
   </section>
+  @else
+  <section class="about_bg">
 
+      <div class="container">
 
+          <div class="row">
+
+              <div class="col-lg-10 offset-lg-1 text-center">
+
+                  {{-- <p class="colorblack">— OUR CULTURE —</p> --}}
+
+                  <h2 class="service_title">{{ $obj->title }}</span></h2>
+
+                  <p class="font18 mb-4"></p>
+
+                  {!! $obj->description !!}
+                  @if(isset($slider))
+                   <a href="{{ url('').'/'.$slider->link.'/'.base64_encode($obj->id).'/@' }}" class="btn2 btngray btn--border btn--center btn--border-lightgrey mt-3"> <span class="btn-text">See More</span> <span class="btn-arrow"> <i class="fa fa-arrow-right"></i></span></a>
+                    @endif
+
+              </div><!--./col-lg-10-->
+
+          </div><!--./row-->
+
+      </div><!--./container-->  
+
+  </section>
+@endif
+  @endforeach
 
   <section class="testimonial-area">
 
@@ -242,7 +246,24 @@
 
             <div class="owl-carousel testimonials-carousel">
 
+              @foreach ($clients as $object)
               <div class="testimonial-item">
+
+                  <img src="{{ url('client_image').'/'.$object->image }}" class="testimonial-img" alt="">
+  
+                  <h5>{{ $object->name }}</h5>
+  
+                  <h6>{{ $object->designation }}</h6>
+  
+                  <p>{{ $object->message }}</p>
+  
+  
+  
+                </div>
+              @endforeach
+            <!--./testimonial-item-->
+
+              {{-- <div class="testimonial-item">
 
                 <img src="images/member2.jpg" class="testimonial-img" alt="">
 
@@ -254,21 +275,7 @@
 
 
 
-              </div><!--./testimonial-item-->
-
-              <div class="testimonial-item">
-
-                <img src="images/member2.jpg" class="testimonial-img" alt="">
-
-                <h5>Antonio Conte</h5>
-
-                <h6>CEO of Barbara</h6>
-
-                <p>Always Speak the trouth vel tincidunt sed euismod nibh Quisque volutpat condimentum velit class aptent taciti sociosqu ad litora torquent per conubia nostra. "</p>
-
-
-
-              </div><!--./testimonial-item-->
+              </div><!--./testimonial-item--> --}}
 
            </div><!--./testimonials-carousel-->
 

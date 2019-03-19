@@ -117,7 +117,7 @@
 </script>
 <div class="container">
 
-    <h4>Page Menu</h4>
+    <h4>Create Page</h4>
     <hr>
     <div class="mycard">
         <form action="{{ url('admin/create-page-body') }}" method="post" id="createpost" enctype="multipart/form-data">

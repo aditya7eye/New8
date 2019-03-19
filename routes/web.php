@@ -66,6 +66,14 @@ Route::group([
   Route::get('page-create','PageController@pagecreate');
   Route::post('create-page-body','PageController@createpagebody');
   Route::get('page-edit/{id}','PageController@pageedit');
+  Route::post('update-page-body','PageController@updatepagebody');
+
+  ///////////////////Happy-client
+
+  Route::get('happy-client','ClientController@happyclient');
+  Route::post('storeclient','ClientController@addclient');
+  Route::get('client-list','ClientController@clientlist');
+
   
 
 });
