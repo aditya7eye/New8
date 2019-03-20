@@ -117,7 +117,7 @@
 </script>
 <div class="container">
 
-    <h4>Create Page</h4>
+    <h4>Create Team | <a class="btn btn-sm btn-success pull-left" href="{{url('admin/team')}}">Team List</a></h4>
     <hr>
     <div class="mycard">
         <form action="{{ url('admin/create-team') }}" method="post" id="createpost" enctype="multipart/form-data">
@@ -144,21 +144,21 @@
                         <input type="text" name="page" id="page" placeholder="Enter Page Name" class="form-control" required>
                     </div>
                 </div> --}}
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label for="">Name</label>
                         <input type="text" name="name" id="name" placeholder="Enter Name" class="form-control">
                     </div>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label for="">Designation</label>
                         <input type="text" name="designation" id="designation" placeholder="Enter Designation"
                                class="form-control">
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label for="">Type</label>
                         <select name="type" id="type" class="form-control">
@@ -167,7 +167,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label for="">About</label>
                         <textarea id="editor1" name="about" class="form-control"

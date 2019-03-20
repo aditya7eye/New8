@@ -19,8 +19,7 @@ $page = \App\Team::get();
  
 <div class="container">
 
-    <h4>Team List<a class="btn btn-success pull-left" href="{{url('admin/team-create')}}">Create
-            Year</a></h4>
+    <h4>Team List | <a class="btn btn-sm btn-success pull-left" href="{{url('admin/team-create')}}">Create Team</a></h4>
     <div class="mycard">
     <table class="table table-striped">
         <thead class="thead-inverse">

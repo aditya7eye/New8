@@ -9,7 +9,7 @@ class ClientController extends Controller
 {
     public function happyclient()
     {
-        return view('client.client');
+        return view('client.clientlist');
     }
 
     public function addclient()
@@ -36,8 +36,9 @@ class ClientController extends Controller
         }
 
     }
+
     public function clientlist()
     {
-    return view('client.clientlist');
+        return view('client.client');
     }
 }

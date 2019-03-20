@@ -37,6 +37,8 @@ Route::group(['middleware' => 'usersession'], function () {
 
         ///////////////////////dashboard
         Route::get('dashboard', 'BackendController@dashboard');
+        Route::get('enquiries', 'BackendController@enquiries');
+
 
         //////////////////////slider-manahe
         Route::get('slider-menu', 'BackendController@slidermenu');

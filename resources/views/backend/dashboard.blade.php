@@ -9,15 +9,15 @@
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                         class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
         </div>
-@php
-    $page = \App\DynamicpageModel::count();
-    $msg = \App\HappyclientModel::whereis_del(0)->count();
-    $ss = \App\SuccessStory::count();
-    $slider = \App\SliderModel::whereis_del(0)->count();
+    @php
+        $page = \App\DynamicpageModel::count();
+        $msg = \App\HappyclientModel::whereis_del(0)->count();
+        $ss = \App\SuccessStory::count();
+        $slider = \App\SliderModel::whereis_del(0)->count();
 
 
-@endphp
-        <!-- Content Row -->
+    @endphp
+    <!-- Content Row -->
         <div class="row">
 
             <!-- Earnings (Monthly) Card Example -->
@@ -112,7 +112,7 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                  aria-labelledby="dropdownMenuLink">
                                 <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="{{url('#')}}">View All</a>
+                                <a class="dropdown-item" href="{{url('admin/enquiries')}}">View All</a>
                                 {{--<a class="dropdown-item" href="#">Another action</a>--}}
                                 {{--<div class="dropdown-divider"></div>--}}
                                 {{--<a class="dropdown-item" href="#">Something else here</a>--}}
@@ -123,7 +123,7 @@
                     <div class="card-body">
                         <div class="chart-area">
                             @php
-                                $enquiries = \App\Enquiry::get();
+                                $enquiries = \App\Enquiry::take(10)->orderBy('id','desc')->get();
                             @endphp
                             <table class="table table-striped">
                                 <thead class="thead-inverse">
@@ -147,7 +147,9 @@
                                         </tr>
                                     @endforeach
                                 @else
-                                    <tr><td colspan="5" align="center"> < No Enquiry Available > </td></tr>
+                                    <tr>
+                                        <td colspan="5" align="center"> < No Enquiry Available ></td>
+                                    </tr>
                                 @endif
                                 </tbody>
                             </table>

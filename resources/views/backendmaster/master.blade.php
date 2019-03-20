@@ -64,6 +64,7 @@
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Page</span></a>
         </li>
+
         {{--<li class="nav-item active">--}}
             {{--<a class="nav-link" href="{{ url('admin/page-create') }}">--}}
                 {{--<i class="fas fa-fw fa-tachometer-alt"></i>--}}
@@ -98,6 +99,11 @@
             <a class="nav-link" href="{{ url('admin/team') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Team</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ url('admin/enquiries') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Enquiries</span></a>
         </li>
         <hr class="sidebar-divider d-none d-md-block">
 

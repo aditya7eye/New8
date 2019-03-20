@@ -75,6 +75,11 @@ class BackendController extends Controller
         return view('backend.dashboard');
     }
 
+    public function enquiries()
+    {
+        return view('backend.enquiry_list');
+    }
+
     public function slidermenu()
     {
         return view('backend.slidermenu');
@@ -159,7 +164,7 @@ class BackendController extends Controller
     {
         $id = base64_decode($id);
         $data = SuccessStory::find($id);
-        return view('success_story.success_story_edit')->with(['data'=>$data]);
+        return view('success_story.success_story_edit')->with(['data' => $data]);
 
 // return 'done';
     }
@@ -191,7 +196,7 @@ class BackendController extends Controller
         return 'done';
     }
     /************Success Story*******************/
-    
+
     /************Success Years*******************/
     function success_year_create()
     {
@@ -219,7 +224,7 @@ class BackendController extends Controller
     {
         $id = base64_decode($id);
         $data = SuccessYears::find($id);
-        return view('success_year.success_year_edit')->with(['data'=>$data]);
+        return view('success_year.success_year_edit')->with(['data' => $data]);
 
 // return 'done';
     }
@@ -254,8 +259,6 @@ class BackendController extends Controller
     /************Success Years*******************/
 
 
-
-
     /************Team*******************/
     function team()
     {
@@ -266,7 +269,7 @@ class BackendController extends Controller
     {
         $id = base64_decode($id);
         $data = Team::find($id);
-        return view('team.teamedit')->with(['data'=>$data]);
+        return view('team.teamedit')->with(['data' => $data]);
 
 // return 'done';
     }
@@ -275,15 +278,14 @@ class BackendController extends Controller
     {
         $data = request('myimage');
         $data1 = Team::find(request('uid'));
-        if(request('myimage')!="")
-        {
+        if (request('myimage') != "") {
             list($type, $data) = explode(';', $data);
             list(, $data) = explode(',', $data);
             $data = base64_decode($data);
             $image_name = time() . '.png';
             $path = "teams/" . $image_name;
             file_put_contents($path, $data);
-            $data1->image = $path ;
+            $data1->image = $path;
 
         }
         // $data->page_id = request('page');
@@ -306,15 +308,14 @@ class BackendController extends Controller
         // return $_REQUEST;
         $data = request('myimage');
         $data1 = new Team();
-        if(request('myimage')!="")
-        {
+        if (request('myimage') != "") {
             list($type, $data) = explode(';', $data);
             list(, $data) = explode(',', $data);
             $data = base64_decode($data);
             $image_name = time() . '.png';
             $path = "teams/" . $image_name;
             file_put_contents($path, $data);
-            $data1->image = $path ;
+            $data1->image = $path;
 
         }
         $data1->name = request('name');

@@ -19,7 +19,7 @@
 
 <div class="container">
 
-    <h4>Success Story List <a class="btn btn-success pull-left" href="{{url('admin/success-story-create')}}">Create
+    <h4>Success Story List | <a class="btn btn-sm btn-success pull-left" href="{{url('admin/success-story-create')}}">Create
             Story</a></h4>
     <div class="mycard" id="pagetable">
         <table class="table table-bordered">
